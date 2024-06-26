@@ -16,6 +16,9 @@ public class ReqDepartmentDto {
 
     private Long id;
 
+    @NotNull
+    private Long organizationId;
+
     @Schema(
             description = "Department name"
     )
