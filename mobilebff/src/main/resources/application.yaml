@@ -1,3 +1,6 @@
 spring:
   application:
     name: mobilebff
+
+server:
+  port: 8084
