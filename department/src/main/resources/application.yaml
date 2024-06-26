@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: department
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/department_db
+    username: postgres
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
