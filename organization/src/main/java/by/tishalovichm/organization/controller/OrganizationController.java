@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
         description = "Organization controller exposes REST APIs for Organization-Service"
 )
 @RestController
-@RequestMapping("v1/organizations")
+@RequestMapping("api/v1/organizations")
 @RequiredArgsConstructor
 public class OrganizationController {
 
