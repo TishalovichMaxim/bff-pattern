@@ -13,6 +13,9 @@ import lombok.SneakyThrows;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
@@ -51,6 +54,31 @@ public class DepartmentServiceImpl implements DepartmentService {
                         "departmentCode", departmentCode));
 
         return mapper.entityToResp(department);
+    }
+
+    @Override
+    @SneakyThrows
+    public List<RespDepartmentDto> getDepartments() {
+        List<Department> departmentDtos = repository.findAll();
+
+        return departmentDtos.stream().map(mapper::entityToResp).toList();
+    }
+
+    @Override
+    @SneakyThrows
+    public List<RespDepartmentDto> getDepartments(Optional<Long> organizationId) {
+        List<Department> departmentDtos;
+
+        if (organizationId.isPresent()) {
+            departmentDtos = repository
+                    .findAllByOrganizationId(organizationId.get());
+        } else {
+            departmentDtos = repository
+                    .findAll();
+        }
+
+
+        return departmentDtos.stream().map(mapper::entityToResp).toList();
     }
 
 }

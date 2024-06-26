@@ -13,12 +13,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @Tag(
         name = "Department Controller",
         description = "Department controller exposes REST APIs for Department-Service"
 )
 @RestController
-@RequestMapping("v1/departments")
+@RequestMapping("api/v1/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
 
@@ -42,25 +45,25 @@ public class DepartmentController {
         );
     }
 
-    @Operation(
-            summary = "Get department by department code",
-            description = "Used to get retrieve department from db by code"
-    )
-    @ApiResponses(
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Department found"
-            )
-    )
-    @GetMapping("")
-    public ResponseEntity<RespDepartmentDto> get(
-            @RequestParam("department-code") String departmentCode) {
+    //@Operation(
+    //        summary = "Get department by department code",
+    //        description = "Used to get retrieve department from db by code"
+    //)
+    //@ApiResponses(
+    //        @ApiResponse(
+    //                responseCode = "200",
+    //                description = "Department found"
+    //        )
+    //)
+    //@GetMapping("")
+    //public ResponseEntity<RespDepartmentDto> get(
+    //        @RequestParam("department-code") String departmentCode) {
 
-        return new ResponseEntity<>(
-                service.get(departmentCode),
-                HttpStatus.OK
-        );
-    }
+    //    return new ResponseEntity<>(
+    //            service.get(departmentCode),
+    //            HttpStatus.OK
+    //    );
+    //}
 
     @Operation(
             summary = "Create new department",
@@ -80,6 +83,15 @@ public class DepartmentController {
                 service.save(reqDepartmentDto),
                 HttpStatus.CREATED
         );
+    }
+
+    @GetMapping
+    public ResponseEntity<List<RespDepartmentDto>> getAll(
+            @RequestParam(value = "organization-id",
+                    required = false) Long organizationId) {
+
+        return ResponseEntity.ok(service
+                .getDepartments(Optional.ofNullable(organizationId)));
     }
 
 }
