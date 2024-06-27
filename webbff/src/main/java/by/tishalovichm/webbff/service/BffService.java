@@ -4,6 +4,6 @@ import by.tishalovichm.webbff.dto.organization.RespOrganizationInfoDto;
 
 public interface BffService {
 
-    RespOrganizationInfoDto getOrganizationInfo(Long organizationId);
+    RespOrganizationInfoDto getOrganizationInfo(Long organizationId, String token);
 
 }
