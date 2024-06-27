@@ -11,5 +11,24 @@ spring:
     hibernate:
       ddl-auto: update
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:18080/realms/bff-task
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
 server:
   port: 8082
+
+jwt:
+  auth:
+    converter:
+      resource-id: organization-service
+      principal-attribute: principal_username
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
