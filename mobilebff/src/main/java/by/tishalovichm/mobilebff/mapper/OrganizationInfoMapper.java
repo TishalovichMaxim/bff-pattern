@@ -1,6 +1,5 @@
 package by.tishalovichm.mobilebff.mapper;
 
-import by.tishalovichm.mobilebff.dto.department.ApiDepartmentDto;
 import by.tishalovichm.mobilebff.dto.department.RespDepartmentDto;
 import by.tishalovichm.mobilebff.dto.organization.ApiOrganizationDto;
 import by.tishalovichm.mobilebff.dto.organization.RespOrganizationInfoDto;
